@@ -1,5 +1,6 @@
 package com.neko.giangnguyen.dorashop.Model.MenuJsonDataProcess;
 
+import com.neko.giangnguyen.dorashop.ConnectAPI.DownloadJson;
 import com.neko.giangnguyen.dorashop.Model.ObjectClass.Category;
 
 import org.json.JSONArray;
@@ -12,10 +13,11 @@ import java.util.List;
 public class MenuJsonProcess {
     private String data;
     private List<Category> listCategory;
-
+    private DownloadJson downloadJson;
     public MenuJsonProcess(String data){
         this.data = data;
         this.listCategory = new ArrayList<>();
+        this.downloadJson = new DownloadJson("http://192.168.1.104:8000/api/subcategories");
     }
 
     public List<Category> getListCategory() {
@@ -33,7 +35,8 @@ public class MenuJsonProcess {
                         object.getInt("id"),
                         object.getString("name"),
                         object.getString("slug"),
-                        object.getString("description")
+                        object.getString("description"),
+                        (object.getString("parent_id") == null) ? false : true
                 );
 
                 this.listCategory.add(category);
@@ -44,5 +47,13 @@ public class MenuJsonProcess {
         }
 
         return this.getListCategory();
+    }
+
+    private List<Category> getSubCategories(){
+//        for (Category category:this.listCategory) {
+//            if(category.getSubCategories())
+//        }
+        return null;
+
     }
 }

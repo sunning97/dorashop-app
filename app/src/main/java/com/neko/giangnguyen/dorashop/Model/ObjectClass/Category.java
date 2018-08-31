@@ -7,25 +7,18 @@ public class Category {
     private String name;
     private String slug;
     private String description;
+    private Boolean isHadChild;
     private List<Category> subCategories;
 
-    public Category(int id, String name, String slug, String description, List<Category> subCategories) {
+    public Category(int id, String name, String slug, String description, Boolean isHadChild) {
         this.id = id;
         this.name = name;
         this.slug = slug;
         this.description = description;
-        this.subCategories = subCategories;
+        this.isHadChild = isHadChild;
     }
 
     public Category() {
-
-    }
-
-    public Category(int id, String name, String slug, String description) {
-        this.id = id;
-        this.name = name;
-        this.slug = slug;
-        this.description = description;
     }
 
     public int getId() {
@@ -60,6 +53,14 @@ public class Category {
         this.description = description;
     }
 
+    public Boolean getHadChild() {
+        return isHadChild;
+    }
+
+    public void setHadChild(Boolean hadChild) {
+        isHadChild = hadChild;
+    }
+
     public List<Category> getSubCategories() {
         return subCategories;
     }
@@ -75,6 +76,7 @@ public class Category {
                 ", name='" + name + '\'' +
                 ", slug='" + slug + '\'' +
                 ", description='" + description + '\'' +
+                ", isHadChild=" + isHadChild +
                 '}';
     }
 }

@@ -5,7 +5,9 @@ import android.util.Log;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
+import okhttp3.FormBody;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -21,6 +23,7 @@ public class DownloadJson extends AsyncTask<String,Void,String> {
 
     public DownloadJson(String url) {
         this.url = url;
+        this.params = new HashMap<>();
     }
 
     public DownloadJson(String url,HashMap<String,String> params) {
@@ -30,14 +33,31 @@ public class DownloadJson extends AsyncTask<String,Void,String> {
 
     @Override
     protected String doInBackground(String... strings) {
-        RequestBody requestBody = new MultipartBody.Builder()
-                .addFormDataPart("email","mrcatbro97@gmail.com")
-                .addFormDataPart("password","password")
-                .setType(MultipartBody.FORM)
-                .build();
+        if(this.params.isEmpty())
+            this.getMethod();
+        else
+            this.postMethod();
+        return this.result;
+    }
+
+    @Override
+    protected void onPostExecute(String s) {
+
+    }
+
+    private void postMethod(){
+
+        FormBody.Builder formBuilder = new FormBody.Builder();
+
+        for(Map.Entry<String, String> e : this.params.entrySet()) {
+            formBuilder.add(e.getKey(), e.getValue());
+        }
+
+        RequestBody formBody = formBuilder.build();
+
         Request request = new Request.Builder()
                 .url(this.url)
-                .post(requestBody)
+                .post(formBody)
                 .build();
         try {
             Response response = okHttpClient.newCall(request).execute();
@@ -45,11 +65,18 @@ public class DownloadJson extends AsyncTask<String,Void,String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return result;
     }
 
-    @Override
-    protected void onPostExecute(String s) {
+    private void getMethod(){
+        Request request = new Request.Builder()
+                .url(this.url)
+                .build();
 
+        try {
+            Response response = okHttpClient.newCall(request).execute();
+            this.result =  response.body().string();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

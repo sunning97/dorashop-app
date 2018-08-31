@@ -1,7 +1,5 @@
 package com.neko.giangnguyen.dorashop.Presenter.Home.MenuProcess;
 
-import android.util.Log;
-
 import com.neko.giangnguyen.dorashop.ConnectAPI.DownloadJson;
 import com.neko.giangnguyen.dorashop.Model.MenuJsonDataProcess.MenuJsonProcess;
 import com.neko.giangnguyen.dorashop.Model.ObjectClass.Category;
@@ -11,7 +9,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class MenuProcess implements IMenuProcess {
-    public IShowMenuProcess iShowMenu;
+    private IShowMenuProcess iShowMenu;
     private MenuJsonProcess menuJsonProcess;
     private List<Category> list;
 
@@ -19,6 +17,7 @@ public class MenuProcess implements IMenuProcess {
     public MenuProcess(IShowMenuProcess iShowMenu){
         this.iShowMenu = iShowMenu;
     }
+
     @Override
     public void getDataMenu() {
         String dataJson = "";
