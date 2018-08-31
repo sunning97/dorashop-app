@@ -50,6 +50,6 @@ public class DownloadJson extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String s) {
-        Log.d("AAA",s);
+
     }
 }

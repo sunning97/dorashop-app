@@ -75,7 +75,6 @@ public class Category {
                 ", name='" + name + '\'' +
                 ", slug='" + slug + '\'' +
                 ", description='" + description + '\'' +
-                ", subCategories=" + subCategories +
                 '}';
     }
 }

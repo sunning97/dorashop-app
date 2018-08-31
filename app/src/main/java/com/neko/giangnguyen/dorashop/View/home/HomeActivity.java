@@ -7,14 +7,20 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ExpandableListView;
 
+import com.neko.giangnguyen.dorashop.Adapter.ExpandAdapter;
 import com.neko.giangnguyen.dorashop.Adapter.ViewPagerAdapter;
-import com.neko.giangnguyen.dorashop.ConnectAPI.DownloadJson;
+import com.neko.giangnguyen.dorashop.Model.ObjectClass.Category;
+import com.neko.giangnguyen.dorashop.Presenter.Home.MenuProcess.MenuProcess;
 import com.neko.giangnguyen.dorashop.R;
 
-public class HomeActivity extends AppCompatActivity {
+import java.util.List;
+
+public class HomeActivity extends AppCompatActivity implements IShowMenuProcess {
 
     Toolbar toolbar;
     TabLayout tabLayout;
@@ -24,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
 
+    ExpandableListView expandableListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.home_view_pager);
         toolbar = findViewById(R.id.home_bar);
 
+        expandableListView = findViewById(R.id.home_list_draw);
 
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -51,8 +59,10 @@ public class HomeActivity extends AppCompatActivity {
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
-        DownloadJson downloadJson = new DownloadJson("http://192.168.1.104:8000/api/login");
-        downloadJson.execute();
+        MenuProcess menuProcess = new MenuProcess(this);
+
+        menuProcess.getDataMenu();
+
     }
 
 
@@ -66,5 +76,12 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if(actionBarDrawerToggle.onOptionsItemSelected(item)) return true;
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void showMenu(List<Category> listCategory) {
+        ExpandAdapter expandAdapter = new ExpandAdapter(this,listCategory);
+        expandableListView.setAdapter(expandAdapter);
+        expandAdapter.notifyDataSetChanged();
     }
 }
