@@ -1,4 +1,4 @@
-package com.neko.giangnguyen.dorashop.Presenter.Home.MenuProcess;
+package com.neko.giangnguyen.dorashop.Presenter.Home.DrawMenuProcess;
 
 import com.neko.giangnguyen.dorashop.ConnectAPI.DownloadJson;
 import com.neko.giangnguyen.dorashop.Model.MenuJsonDataProcess.MenuJsonProcess;
@@ -8,13 +8,13 @@ import com.neko.giangnguyen.dorashop.View.Home.IShowMenuProcess;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class MenuProcess implements IMenuProcess {
+public class DrawMenuProcess implements IDrawMenuProcess{
     private IShowMenuProcess iShowMenu;
     private MenuJsonProcess menuJsonProcess;
     private List<Category> list;
 
 
-    public MenuProcess(IShowMenuProcess iShowMenu){
+    public DrawMenuProcess(IShowMenuProcess iShowMenu){
         this.iShowMenu = iShowMenu;
     }
 
@@ -28,8 +28,8 @@ public class MenuProcess implements IMenuProcess {
         try {
             dataJson = downloadJson.get();
 
-            this.menuJsonProcess = new MenuJsonProcess(dataJson);
-            this.list = this.menuJsonProcess.parserJson();
+            this.menuJsonProcess = new MenuJsonProcess();
+            this.list = this.menuJsonProcess.parserJsonParent(dataJson);
             this.iShowMenu.showMenu(this.list);
 
         } catch (ExecutionException e) {

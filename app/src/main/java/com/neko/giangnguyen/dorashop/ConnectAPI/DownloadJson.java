@@ -31,6 +31,7 @@ public class DownloadJson extends AsyncTask<String,Void,String> {
         this.params = params;
     }
 
+    public DownloadJson() {}
     @Override
     protected String doInBackground(String... strings) {
         if(this.params.isEmpty())
@@ -42,7 +43,6 @@ public class DownloadJson extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String s) {
-
     }
 
     private void postMethod(){
@@ -62,6 +62,7 @@ public class DownloadJson extends AsyncTask<String,Void,String> {
         try {
             Response response = okHttpClient.newCall(request).execute();
             this.result =  response.body().string();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -78,5 +79,21 @@ public class DownloadJson extends AsyncTask<String,Void,String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public HashMap<String, String> getParams() {
+        return params;
+    }
+
+    public void setParams(HashMap<String, String> params) {
+        this.params = params;
     }
 }

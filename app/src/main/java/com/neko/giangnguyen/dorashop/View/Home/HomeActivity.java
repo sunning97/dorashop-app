@@ -15,7 +15,7 @@ import android.widget.ExpandableListView;
 import com.neko.giangnguyen.dorashop.Adapter.ExpandAdapter;
 import com.neko.giangnguyen.dorashop.Adapter.ViewPagerAdapter;
 import com.neko.giangnguyen.dorashop.Model.ObjectClass.Category;
-import com.neko.giangnguyen.dorashop.Presenter.Home.MenuProcess.MenuProcess;
+import com.neko.giangnguyen.dorashop.Presenter.Home.DrawMenuProcess.DrawMenuProcess;
 import com.neko.giangnguyen.dorashop.R;
 
 import java.util.List;
@@ -59,10 +59,10 @@ public class HomeActivity extends AppCompatActivity implements IShowMenuProcess 
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
-        MenuProcess menuProcess = new MenuProcess(this);
+        DrawMenuProcess menuProcess = new DrawMenuProcess(this);
 
         menuProcess.getDataMenu();
-
+        Log.d("AAA","CC");
     }
 
 
