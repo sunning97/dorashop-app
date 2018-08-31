@@ -1,5 +1,7 @@
 package com.neko.giangnguyen.dorashop.Presenter.Home.DrawMenuProcess;
 
+import android.util.Log;
+
 import com.neko.giangnguyen.dorashop.ConnectAPI.DownloadJson;
 import com.neko.giangnguyen.dorashop.Model.MenuJsonDataProcess.MenuJsonProcess;
 import com.neko.giangnguyen.dorashop.Model.ObjectClass.Category;
@@ -27,7 +29,6 @@ public class DrawMenuProcess implements IDrawMenuProcess{
 
         try {
             dataJson = downloadJson.get();
-
             this.menuJsonProcess = new MenuJsonProcess();
             this.list = this.menuJsonProcess.parserJsonParent(dataJson);
             this.iShowMenu.showMenu(this.list);

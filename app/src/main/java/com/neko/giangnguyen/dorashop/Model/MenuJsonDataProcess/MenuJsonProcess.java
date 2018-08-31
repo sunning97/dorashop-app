@@ -34,50 +34,31 @@ public class MenuJsonProcess {
 
     public List<Category> parserJsonParent(String data){
         this.listCategory =  this.parseJson(data);
-
         return this.listCategory;
 
-    }
-
-    private void getSubCategories(){
-
-        FormBody.Builder formBuilder = new FormBody.Builder();
-
-        for (Category category:this.listCategory) {
-
-            formBuilder.add("id",String.valueOf(category.getId()));
-            RequestBody formBody = formBuilder.build();
-            Request request = new Request.Builder()
-                    .url("http://192.168.1.104:8000/api/subcategories")
-                    .post(formBody)
-                    .build();
-            try {
-                Response response = okHttpClient.newCall(request).execute();
-                if(!response.body().string().equals(""))
-                category.setSubCategories(this.parseJson(response.body().string()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     private List<Category> parseJson(String data){
         List<Category> tmp = new ArrayList<>();
         try {
             JSONArray jsonArray = new JSONArray(data);
-            Log.d("AAA",data);
 
             for (int i = 0; i< jsonArray.length();i++){
                 JSONObject object= jsonArray.getJSONObject(i);
+                List<Category> sub = null;
+                if(!object.isNull("sub_categories")){
+                    String a = object.getString("sub_categories");
+                    sub = this.parseJson(a);
+                }
 
                 Category category = new Category(
                         object.getInt("id"),
                         object.getString("name"),
                         object.getString("slug"),
                         object.getString("description"),
-                        (object.getString("sub_categories").isEmpty()) ? false : true
+                        (object.isNull("sub_categories")) ? false : true
                 );
-
+                if(!object.isNull("sub_categories")) category.setSubCategories(sub);
                 tmp.add(category);
             }
 

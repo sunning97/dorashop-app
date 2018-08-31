@@ -61,13 +61,17 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
         LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.home_menu_parent_layout,parent,false);
         TextView textView = view.findViewById(R.id.category_name);
-        textView.setText(this.list.get(groupPosition).getHadChild().toString());
+        textView.setText(this.list.get(groupPosition).getName());
         return  view;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        return null;
+        LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = layoutInflater.inflate(R.layout.home_menu_child_layout,parent,false);
+        TextView textView = view.findViewById(R.id.category_name);
+        textView.setText(this.list.get(groupPosition).getSubCategories().get(childPosition).getName());
+        return  view;
     }
 
     @Override

@@ -18,6 +18,15 @@ public class Category {
         this.isHadChild = isHadChild;
     }
 
+    public Category(int id, String name, String slug, String description, Boolean isHadChild, List<Category> subCategories) {
+        this.id = id;
+        this.name = name;
+        this.slug = slug;
+        this.description = description;
+        this.isHadChild = isHadChild;
+        this.subCategories = subCategories;
+    }
+
     public Category() {
     }
 
@@ -77,6 +86,7 @@ public class Category {
                 ", slug='" + slug + '\'' +
                 ", description='" + description + '\'' +
                 ", isHadChild=" + isHadChild +
+                ", subCategories=" + subCategories +
                 '}';
     }
 }

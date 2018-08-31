@@ -62,7 +62,6 @@ public class HomeActivity extends AppCompatActivity implements IShowMenuProcess 
         DrawMenuProcess menuProcess = new DrawMenuProcess(this);
 
         menuProcess.getDataMenu();
-        Log.d("AAA","CC");
     }
 
 
