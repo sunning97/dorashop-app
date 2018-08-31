@@ -1,4 +1,4 @@
-package com.neko.giangnguyen.dorashop.View.home;
+package com.neko.giangnguyen.dorashop.View.Home;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.neko.giangnguyen.dorashop.Adapter.ViewPagerAdapter;
+import com.neko.giangnguyen.dorashop.ConnectAPI.DownloadJson;
 import com.neko.giangnguyen.dorashop.R;
 
 public class HomeActivity extends AppCompatActivity {
@@ -49,6 +50,9 @@ public class HomeActivity extends AppCompatActivity {
 
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        DownloadJson downloadJson = new DownloadJson("http://192.168.1.104:8000/api/login");
+        downloadJson.execute();
     }
 
 

@@ -1,11 +1,11 @@
-package com.neko.giangnguyen.dorashop.View.flash_screen;
+package com.neko.giangnguyen.dorashop.View.FlashScreen;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.neko.giangnguyen.dorashop.R;
-import com.neko.giangnguyen.dorashop.View.home.HomeActivity;
+import com.neko.giangnguyen.dorashop.View.Home.HomeActivity;
 
 public class FlashAvtivity extends AppCompatActivity {
 

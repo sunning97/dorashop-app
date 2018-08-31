@@ -1,4 +1,4 @@
-package com.neko.giangnguyen.dorashop.View.home.fragment;
+package com.neko.giangnguyen.dorashop.View.Home.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

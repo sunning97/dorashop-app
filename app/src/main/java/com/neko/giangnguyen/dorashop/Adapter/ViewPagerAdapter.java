@@ -5,9 +5,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.neko.giangnguyen.dorashop.View.home.fragment.Fashion;
-import com.neko.giangnguyen.dorashop.View.home.fragment.HighLights;
-import com.neko.giangnguyen.dorashop.View.home.fragment.Technology;
+import com.neko.giangnguyen.dorashop.View.Home.fragment.Fashion;
+import com.neko.giangnguyen.dorashop.View.Home.fragment.HighLights;
+import com.neko.giangnguyen.dorashop.View.Home.fragment.Technology;
 
 import java.util.ArrayList;
 import java.util.List;
