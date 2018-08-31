@@ -8,7 +8,18 @@
         <item name="colorAccent">@color/orange</item>
         <item name="android:textColorPrimary">#fff</item>
     </style>
+
+    <style name="MenuItemColor" parent="AppTheme">
+        <item name="android:textColorPrimary">@color/orange</item>
+        <item name="drawerArrowStyle">@style/changeDrawerlayoutIconColor</item>
+    </style>
+
+    <style name="changeDrawerlayoutIconColor" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/white</item>
+    </style>
+
     <style name="capfale" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
     </style>
+
 </resources>
