@@ -5,18 +5,18 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.neko.giangnguyen.dorashop.View.Home.fragment.Fashion;
-import com.neko.giangnguyen.dorashop.View.Home.fragment.HighLights;
-import com.neko.giangnguyen.dorashop.View.Home.fragment.Technology;
+import com.neko.giangnguyen.dorashop.View.Home.Fragment.Fashion;
+import com.neko.giangnguyen.dorashop.View.Home.Fragment.HighLights;
+import com.neko.giangnguyen.dorashop.View.Home.Fragment.Technology;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewPagerAdapter extends FragmentPagerAdapter {
+public class HomeViewPagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> fragments;
     private List<String> fragments_title;
-    public ViewPagerAdapter(FragmentManager fm) {
+    public HomeViewPagerAdapter(FragmentManager fm) {
         super(fm);
 
         fragments = new ArrayList<>();

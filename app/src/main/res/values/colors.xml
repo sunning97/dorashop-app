@@ -3,10 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="toolbarBg">#003c74</color>
+    <color name="toolbarBg">#3F51B5</color>
     <color name="orange">#ff5614</color>
     <color name="gray">#ccc</color>
     <color name="black">#000</color>
     <color name="white">#ffffff</color>
     <color name="gray_2">#d1d1d1</color>
+    <color name="fb_color">#4a6ea9</color>
+    <color name="google_color">#da4835</color>
 </resources>

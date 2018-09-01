@@ -18,8 +18,9 @@
         android:title="More...">
         <menu>
             <item
-                android:title="Login"
-                android:icon="@drawable/ic_persion"/>
+                android:id="@+id/home_menu_item_auth"
+                android:title="Đăng nhập/Đăng ký"
+                android:icon="@drawable/ic_persion" />
             <item
                 android:title="Notification"
                 android:icon="@drawable/ic_notification"/>
