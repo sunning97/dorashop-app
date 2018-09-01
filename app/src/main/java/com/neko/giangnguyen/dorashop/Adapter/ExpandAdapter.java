@@ -1,8 +1,10 @@
 package com.neko.giangnguyen.dorashop.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.icu.util.Measure;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
@@ -65,21 +67,42 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
         return false;
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
-    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.home_menu_parent_layout,parent,false);
-        TextView textView = view.findViewById(R.id.category_name);
-        ImageView icon = view.findViewById(R.id.icon);
+    public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
+
+        if(convertView == null){
+            viewHolder = new ViewHolder();
+
+            LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = layoutInflater.inflate(R.layout.home_menu_parent_layout,parent,false);
+            viewHolder.name = convertView.findViewById(R.id.category_name);
+            viewHolder.icon = convertView.findViewById(R.id.icon);
+
+            convertView.setTag(viewHolder);
+        } else viewHolder = (ViewHolder) convertView.getTag();
+
         if(!this.list.get(groupPosition).getHadChild()) {
-            icon.setVisibility(View.INVISIBLE);
+            viewHolder.icon.setVisibility(View.INVISIBLE);
         } else {
-            if (isExpanded)
-                icon.setImageResource(R.drawable.ic_remove);
-            else icon.setImageResource(R.drawable.ic_add);
+            if (isExpanded) {
+                convertView.setBackgroundColor(R.color.gray_2);
+                viewHolder.icon.setImageResource(R.drawable.ic_remove);
+            }
+            else viewHolder.icon.setImageResource(R.drawable.ic_add);
         }
-        textView.setText(this.list.get(groupPosition).getName());
-        return  view;
+        viewHolder.name.setText(this.list.get(groupPosition).getName());
+
+        convertView.setOnTouchListener(new View.OnTouchListener(){
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Log.d("CCC",list.get(groupPosition).getName() + " - " + list.get(groupPosition).getId());
+                return false;
+            }
+        });
+        return  convertView;
     }
 
     @Override
@@ -112,6 +135,11 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
             heightMeasureSpec = MeasureSpec.makeMeasureSpec(900,MeasureSpec.AT_MOST);
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         }
+    }
+
+    private class ViewHolder{
+        TextView name;
+        ImageView icon;
     }
 
 }
