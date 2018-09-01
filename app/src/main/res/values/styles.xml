@@ -22,4 +22,7 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <declare-styleable name="LoginPassword">
+        <attr name="eyeHidden" format="boolean"></attr>
+    </declare-styleable>
 </resources>

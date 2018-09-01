@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -14,7 +15,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="Địa chỉ email"
             android:textColor="@color/black"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -23,11 +24,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp">
 
-        <EditText
+        <com.neko.giangnguyen.dorashop.CustomView.LoginPassword
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Mật khẩu"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            app:eyeHidden="true"
+            />
     </android.support.design.widget.TextInputLayout>
 
     <TextView
