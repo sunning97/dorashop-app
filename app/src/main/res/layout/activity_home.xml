@@ -45,10 +45,10 @@
                             android:text="Tìm kiếm trên Dorashop"
                             android:textAlignment="viewStart"
                             android:layout_weight="1"
-                            android:layout_marginLeft="5dp"
                             android:background="@drawable/bg_search"
                             style="?android:attr/borderlessButtonStyle"
                             android:textColor="@color/black"
+                            android:paddingLeft="10dp"
                             />
                         <View
                             android:layout_width="1dp"

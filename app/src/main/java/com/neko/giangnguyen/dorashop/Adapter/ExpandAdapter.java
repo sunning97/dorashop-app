@@ -87,10 +87,13 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
             viewHolder.icon.setVisibility(View.INVISIBLE);
         } else {
             if (isExpanded) {
-                convertView.setBackgroundColor(R.color.gray_2);
+//                convertView.setBackgroundColor(R.color.gray_2);
                 viewHolder.icon.setImageResource(R.drawable.ic_remove);
             }
-            else viewHolder.icon.setImageResource(R.drawable.ic_add);
+            else {
+//                convertView.setBackgroundColor(R.color.white);
+                viewHolder.icon.setImageResource(R.drawable.ic_add);
+            }
         }
         viewHolder.name.setText(this.list.get(groupPosition).getName());
 
