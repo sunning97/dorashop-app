@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,14 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.neko.giangnguyen.dorashop.Model.ObjectClass.User;
-import com.neko.giangnguyen.dorashop.Presenter.Register.DoRegister;
+import com.neko.giangnguyen.dorashop.Presenter.Register.RegisterPresenter;
 import com.neko.giangnguyen.dorashop.R;
 
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
-public class Register extends Fragment implements IRegister{
+public class RegisterView extends Fragment implements IRegisterView {
 
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
@@ -122,7 +120,7 @@ public class Register extends Fragment implements IRegister{
 
     }
 
-    private void register(final IRegister iRegister){
+    private void register(final IRegisterView iRegisterView){
         this.btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,8 +131,9 @@ public class Register extends Fragment implements IRegister{
                 validatePasswordConfirm();
 
                 if(isValidateNoError){
-                    DoRegister doRegister = new DoRegister(iRegister);
-                    doRegister.doRegister(getInfoRegister());
+
+                    RegisterPresenter registerPresenter = new RegisterPresenter(iRegisterView);
+                    registerPresenter.doRegister(getInfoRegister());
                 }
             }
         });
@@ -142,7 +141,7 @@ public class Register extends Fragment implements IRegister{
 
     @Override
     public void registerSuccess() {
-
+        Toast.makeText(getContext(),"Dang ki thanh cong",Toast.LENGTH_SHORT).show();
     }
 
     @Override
