@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +14,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.neko.giangnguyen.dorashop.Model.ObjectClass.User;
+import com.neko.giangnguyen.dorashop.Presenter.Register.DoRegister;
 import com.neko.giangnguyen.dorashop.R;
 
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
-public class Register extends Fragment{
+public class Register extends Fragment implements IRegister{
 
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
@@ -44,13 +48,15 @@ public class Register extends Fragment{
     Button btnRegister;
     Boolean isValidateNoError = false;
 
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.auth_register_fragment,container,false);
         this.addControll(view);
         this.validate();
-        this.register();
+        this.register(this);
         return view;
     }
 
@@ -116,6 +122,50 @@ public class Register extends Fragment{
 
     }
 
+    private void register(final IRegister iRegister){
+        this.btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                validateFirstName();
+                validateLastName();
+                validateEmail();
+                validatePassword();
+                validatePasswordConfirm();
+
+                if(isValidateNoError){
+                    DoRegister doRegister = new DoRegister(iRegister);
+                    doRegister.doRegister(getInfoRegister());
+                }
+            }
+        });
+    }
+
+    @Override
+    public void registerSuccess() {
+
+    }
+
+    @Override
+    public void registerFaile() {
+
+    }
+
+    @Override
+    public void emailIsUsed() {
+        this.email_input_layout.setErrorEnabled(true);
+        this.email_input_layout.setError("Địa chỉ email đã được sử dụng");
+        this.isValidateNoError = false;
+    }
+
+    private HashMap<String,String> getInfoRegister(){
+        HashMap<String,String> paramInput = new HashMap<>();
+        paramInput.put("f_name",first_name_input.getText().toString().trim());
+        paramInput.put("l_name",last_name_input.getText().toString().trim());
+        paramInput.put("email",email_input.getText().toString().trim());
+        paramInput.put("password",password_input.getText().toString().trim());
+        return  paramInput;
+    }
+
     private void validateFirstName(){
         if(this.first_name_input.getText().toString().trim().isEmpty()){
             this.fisrt_name_input_layout.setError("Vui lòng nhập vào họ và tên đệm");
@@ -174,22 +224,5 @@ public class Register extends Fragment{
             this.password_input_layout.setError("");
             this.isValidateNoError = true;
         }
-    }
-
-    private void register(){
-        this.btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                validateFirstName();
-                validateLastName();
-                validateEmail();
-                validatePassword();
-                validatePasswordConfirm();
-
-                if(isValidateNoError){
-                    Toast.makeText(getContext(),"do register",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 }

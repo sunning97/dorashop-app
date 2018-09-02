@@ -22,7 +22,7 @@ import com.neko.giangnguyen.dorashop.View.Auth.AuthActivity;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements IShowMenuProcess {
-
+    public static final String API_URL= "http://192.168.1.101:8000/api/";
     Toolbar toolbar;
     TabLayout tabLayout;
     ViewPager viewPager;

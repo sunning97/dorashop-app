@@ -17,6 +17,7 @@ import okhttp3.Response;
 public class DownloadJson extends AsyncTask<String,Void,String> {
     private String url;
     private String result;
+    private int statusCode;
     private HashMap<String,String> params;
 
     private OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
@@ -61,6 +62,9 @@ public class DownloadJson extends AsyncTask<String,Void,String> {
                 .build();
         try {
             Response response = okHttpClient.newCall(request).execute();
+
+            this.statusCode = response.code();
+
             this.result =  response.body().string();
 
         } catch (IOException e) {
@@ -96,4 +100,9 @@ public class DownloadJson extends AsyncTask<String,Void,String> {
     public void setParams(HashMap<String, String> params) {
         this.params = params;
     }
+
+    public int getStatusCode() {
+        return this.statusCode;
+    }
+
 }

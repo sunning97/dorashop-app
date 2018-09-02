@@ -5,6 +5,7 @@ import android.util.Log;
 import com.neko.giangnguyen.dorashop.ConnectAPI.DownloadJson;
 import com.neko.giangnguyen.dorashop.Model.MenuJsonDataProcess.MenuJsonProcess;
 import com.neko.giangnguyen.dorashop.Model.ObjectClass.Category;
+import com.neko.giangnguyen.dorashop.View.Home.HomeActivity;
 import com.neko.giangnguyen.dorashop.View.Home.IShowMenuProcess;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class DrawMenuProcess implements IDrawMenuProcess{
     public void getDataMenu() {
         String dataJson = "";
 
-        DownloadJson downloadJson = new DownloadJson("http://192.168.1.101:8000/api/categories");
+        DownloadJson downloadJson = new DownloadJson(HomeActivity.API_URL+"categories");
         downloadJson.execute();
 
         try {
