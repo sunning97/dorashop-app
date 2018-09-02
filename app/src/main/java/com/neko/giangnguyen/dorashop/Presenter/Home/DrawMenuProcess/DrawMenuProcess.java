@@ -24,7 +24,7 @@ public class DrawMenuProcess implements IDrawMenuProcess{
     public void getDataMenu() {
         String dataJson = "";
 
-        DownloadJson downloadJson = new DownloadJson("http://192.168.1.104:8000/api/categories");
+        DownloadJson downloadJson = new DownloadJson("http://192.168.1.101:8000/api/categories");
         downloadJson.execute();
 
         try {

@@ -24,5 +24,6 @@
 
     <declare-styleable name="LoginPassword">
         <attr name="eyeHidden" format="boolean"></attr>
+        <attr name="validator" format="boolean"></attr>
     </declare-styleable>
 </resources>

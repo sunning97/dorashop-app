@@ -4,11 +4,13 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.ContextCompat;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.EditText;
 import com.neko.giangnguyen.dorashop.R;
 
@@ -18,6 +20,7 @@ public class LoginPassword extends EditText{
 
     Boolean isPasswordVisible = false;
     Boolean eye = false;
+    Boolean isValidator = false;
 
     public LoginPassword(Context context) {
         super(context);
@@ -46,12 +49,12 @@ public class LoginPassword extends EditText{
                     .getTheme()
                     .obtainStyledAttributes(attributeSet,R.styleable.LoginPassword,0,0);
             this.eye = typedArray.getBoolean(R.styleable.LoginPassword_eyeHidden,false);
+            this.isValidator = typedArray.getBoolean(R.styleable.LoginPassword_validator,false);
 
             typedArray.recycle();
         }
         eyeHidden = ContextCompat.getDrawable(getContext(),R.drawable.visibility_black);
         eyeVisible = ContextCompat.getDrawable(getContext(),R.drawable.visibility_off_black);
-
         this.setIcon();
     }
 

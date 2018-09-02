@@ -4,25 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="50dp"
+        android:id="@+id/email_input_layout"
+        app:errorEnabled="true">
 
         <com.neko.giangnguyen.dorashop.CustomView.LoginEmail
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Địa chỉ email"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:id="@+id/input_email"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        app:errorEnabled="true"
+        android:id="@+id/password_input_layout">
 
         <com.neko.giangnguyen.dorashop.CustomView.LoginPassword
             android:layout_width="match_parent"
@@ -30,6 +36,7 @@
             android:hint="Mật khẩu"
             android:textColor="@color/black"
             app:eyeHidden="true"
+            android:id="@+id/input_password"
             />
     </android.support.design.widget.TextInputLayout>
 
@@ -48,7 +55,8 @@
         android:layout_marginBottom="30dp"
         android:background="@color/orange"
         android:text="Đăng nhập"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:id="@+id/btn_login"/>
 
     <TextView
         android:layout_width="match_parent"
